@@ -1,5 +1,4 @@
 /* reset css */
-
 * {
   min-width: 0;
   font: inherit;
@@ -21,34 +20,24 @@ svg {
 
 body {
   margin: 0;
-  min-height: 100dvh;
+  min-height: 100vh; /* Cambié '100dvh' a '100vh' */
+  background-color: #fad7df;
 }
 
 h1,
 h2,
 h3 {
-  text-wrap: balance;
+  text-wrap: balance; /* Esta propiedad no es estándar, se puede eliminar si no funciona */
 }
 
 p {
-  text-wrap: pretty;
+  text-wrap: wrap; /* Cambié 'pretty' a 'wrap' */
 }
 
 /* styles */
-/* TODO: Cambiar la fuente
-
-* {
-  font-family: comic-sans;
-} */
-
-body {
-  background-color: #fad7df;
-}
-
 main {
   display: flex;
   flex-direction: column;
-
   gap: 3rem;
   justify-content: center;
   align-items: center;
@@ -65,9 +54,7 @@ main {
   border-right: 200px solid transparent;
   border-top: 100px solid #fe3334;
   border-bottom: 100px solid transparent;
-
-  /*  */
-  transition: transform .75s;
+  transition: transform 0.75s;
   transform-origin: top;
 }
 
@@ -75,14 +62,11 @@ main {
   position: absolute;
   padding: 1.5rem;
   line-height: 2rem;
-  right: 5px;
-  /*  */
   z-index: -1;
   background: white;
   width: 390px;
   height: 180px;
-
-  transition: all .75s;
+  transition: all 0.75s;
 }
 
 .letter {
@@ -95,29 +79,29 @@ main {
 .options {
   display: flex;
   gap: 5rem;
+}
 
-  & button {
-    color: #ff3234;
-    font-weight: 600;
-    border-radius: 3px;
-    background: #fad7df;
-    padding: 0.5rem 1rem;
-    border: 1px solid #fe3334;
-    cursor: pointer;
-  }
+.options button {
+  color: #ff3234;
+  font-weight: 600;
+  border-radius: 3px;
+  background: #fad7df;
+  padding: 0.5rem 1rem;
+  border: 1px solid #fe3334;
+  cursor: pointer;
+}
 
-  & button:hover {
-    background: #ff989e;
-    color: white;
-  }
+.options button:hover {
+  background: #ff989e;
+  color: white;
 }
 
 .open-cover {
-  transform: rotatex(180deg);
+  transform: rotateX(180deg);
 }
 
 .open-paper {
-  animation: openPaper .5s forwards;
+  animation: openPaper 0.5s forwards;
 }
 
 @keyframes openPaper {
@@ -130,7 +114,7 @@ main {
 }
 
 .close-paper {
-  animation: closePaper .5s forwards;
+  animation: closePaper 0.5s forwards;
 }
 
 @keyframes closePaper {
@@ -142,7 +126,6 @@ main {
   }
 }
 
-
 .heart {
   display: none;
   position: absolute;
@@ -150,20 +133,17 @@ main {
   left: 46.5%;
   margin: auto;
   font-size: 3rem;
-
   color: #fe3334;
-
-  animation: crecer 1s forwards ;
+  animation: crecer 1s forwards;
 }
 
 @keyframes crecer {
   0% {
-    scale: 1;
+    transform: scale(1);
     opacity: 1;
   }
   100% {
-    scale: 3;
+    transform: scale(3);
     opacity: 0;
-
   }
 }
