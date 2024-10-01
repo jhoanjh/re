@@ -5,14 +5,164 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carta</title>
     <style>
+        /* Aquí puedes pegar tu CSS */
+      
+      /* reset css */
+* {
+  min-width: 0;
+  font: inherit;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+video,
+svg {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh; /* Cambié '100dvh' a '100vh' */
+  background-color: #fad7df;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance; /* Esta propiedad no es estándar, se puede eliminar si no funciona */
+}
+
+p {
+  text-wrap: wrap; /* Cambié 'pretty' a 'wrap' */
+}
+
+/* styles */
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container-letter {
+  position: relative;
+}
+
+.cover {
+  position: absolute;
+  border-left: 200px solid transparent;
+  border-right: 200px solid transparent;
+  border-top: 100px solid #fe3334;
+  border-bottom: 100px solid transparent;
+  transition: transform 0.75s;
+  transform-origin: top;
+}
+
+.paper {
+  position: absolute;
+  padding: 1.5rem;
+  line-height: 2rem;
+  z-index: -1;
+  background: white;
+  width: 390px;
+  height: 180px;
+  transition: all 0.75s;
+}
+
+.letter {
+  border-left: 200px solid #ff989e;
+  border-right: 200px solid #ff989e;
+  border-top: 100px solid transparent;
+  border-bottom: 100px solid #ff858a;
+}
+
+.options {
+  display: flex;
+  gap: 5rem;
+}
+
+.options button {
+  color: #ff3234;
+  font-weight: 600;
+  border-radius: 3px;
+  background: #fad7df;
+  padding: 0.5rem 1rem;
+  border: 1px solid #fe3334;
+  cursor: pointer;
+}
+
+.options button:hover {
+  background: #ff989e;
+  color: white;
+}
+
+.open-cover {
+  transform: rotateX(180deg);
+}
+
+.open-paper {
+  animation: openPaper 0.5s forwards;
+}
+
+@keyframes openPaper {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: -120px;
+  }
+}
+
+.close-paper {
+  animation: closePaper 0.5s forwards;
+}
+
+@keyframes closePaper {
+  0% {
+    top: -120px;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+.heart {
+  display: none;
+  position: absolute;
+  top: 25%;
+  left: 46.5%;
+  margin: auto;
+  font-size: 3rem;
+  color: #fe3334;
+  animation: crecer 1s forwards;
+}
+
+@keyframes crecer {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+      
         /* reset css */
         * {
             min-width: 0;
             font: inherit;
         }
-        *,
-        *::before,
-        *::after {
+        * {
             box-sizing: border-box;
         }
         body {
@@ -103,10 +253,13 @@
         .show {
             display: block;
         }
+        .audio-container {
+            display: none;
+        }
         .highlight {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #fe3334;
+            font-size: 1.5rem; /* Tamaño más grande */
+            font-weight: bold; /* Negrita */
+            color: #fe3334; /* Color personalizado */
         }
     </style>
 </head>
@@ -115,13 +268,21 @@
         <div class="container-letter">
             <div class="cover"></div>
             <span class="heart" style="font-size: 2rem; z-index: 2;">♥</span>
-            <p class="paper" id="mainMessage"></p>
+            <p class="paper" id="mainMessage">
+                <!-- Aquí puedes agregar tu mensaje principal -->
+            </p>
             <div class="letter"></div>
             <div class="decorative-card" id="decorativeCard">
                 <h2 class="highlight">Querida Heyli ♥</h2>
-                <p>Solo quería tomarme un momento para decirte lo genial que es poder hablar contigo. Cada vez que recibo un mensaje tuyo, me saca una sonrisa.</p>
-                <p>Eres una persona única, y aprecio cada conversación que tenemos. Me hace feliz saber que hay alguien con quien puedo compartir lo que pienso. 💖</p>
-                <p>Recuerda lo mucho que te quiero, eres una chica que aprecio y amo mucho. 😊❤️</p>
+                <p>
+                    Solo quería tomarme un momento para decirte lo genial que es poder hablar contigo. Cada vez que recibo un mensaje tuyo, me saca una sonrisa.
+                </p>
+                <p>
+                    Eres una persona única, y aprecio cada conversación que tenemos. Me hace feliz saber que hay alguien con quien puedo compartir lo que pienso. 💖
+                </p>
+                <p>
+                    Recuerda lo mucho que te quiero, eres una chica que aprecio y amo mucho. 😊❤️ 
+                </p>
                 <p>¡Espero que te guste este pequeño detalle!</p>
                 <img src="https://www.dropbox.com/scl/fi/2oogz6nk8nnk5yjfibz7i/Gatito-Saludando-Gif.gif?rlkey=mt9qluaupgnl7sfp3juczuhm1&dl=1" alt="Gatito Saludando" style="width: 100%; max-width: 200px;">
             </div>
@@ -141,6 +302,7 @@
         document.getElementById('open').addEventListener('click', function() {
             document.querySelector('.paper').classList.add('open-paper');
             document.getElementById('decorativeCard').classList.add('show');
+            
             const audio = document.getElementById('backgroundMusic');
             audio.play();
         });
@@ -148,6 +310,7 @@
         document.getElementById('close').addEventListener('click', function() {
             document.querySelector('.paper').classList.remove('open-paper');
             document.getElementById('decorativeCard').classList.remove('show');
+            
             const audio = document.getElementById('backgroundMusic');
             audio.pause();
             audio.currentTime = 0;
