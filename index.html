@@ -1,113 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet"> <!-- Fuente de Google -->
-    <title>Love Letter</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #fae1dd;
-        }
-
-        .container {
-            position: relative;
-        }
-
-        .valentines {
-            position: relative;
-            top: 50px;
-            animation: up 3s linear infinite;
-        }
-
-        @keyframes up {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-30px);
-            }
-        }
-
-        .envelope {
-            position: relative;
-            width: 300px;
-            height: 200px;
-            background-color: #f08080;
-        }
-
-        .card {
-            position: absolute;
-            background-color: #eae2b7;
-            width: 270px;
-            height: 170px;
-            top: 10px;
-            left: 15px;
-            box-shadow: -5px -5px 100px rgba(0, 0, 0, 0.4);
-            transform-origin: top;
-            opacity: 0; /* Ocultar por defecto */
-            transition: transform 0.5s ease, opacity 0.5s ease;
-        }
-
-        .card.open {
-            transform: translateY(-30px) scaleY(1); /* Desplazar y abrir */
-            opacity: 1; /* Mostrar la carta */
-        }
-
-        .text {
-            position: absolute;
-            font-family: 'Lobster', cursive; /* Tipografía nueva */
-            font-size: 28px;
-            text-align: center;
-            line-height: 25px;
-            top: 20px;
-            left: 15px;
-            color: #003049;
-            width: 100%; /* Asegura que el texto se alinee correctamente */
-        }
-
-        .open-button {
-            position: absolute;
-            bottom: -40px; /* Coloca el botón debajo de la carta */
-            left: 50%; /* Centrar horizontalmente */
-            transform: translateX(-50%); /* Ajuste para centrar */
-            background-color: #ff77a8; /* Color rosado */
-            color: white; /* Color del texto */
-            border: none; /* Sin borde */
-            border-radius: 5px; /* Bordes redondeados */
-            padding: 10px 30px; /* Espaciado interno */
-            font-size: 16px; /* Tamaño de la fuente */
-            cursor: pointer; /* Cambia el cursor al pasar */
-            transition: background-color 0.3s; /* Transición suave */
-        }
-
-        .open-button:hover {
-            background-color: #ff5e7e; /* Color al pasar el mouse */
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="valentines">
-            <div class="envelope"></div>
-            <div class="card closed"> <!-- Estado cerrado por defecto -->
-                <div class="text">To my</br> hola heyli </br>I love You!</div>
-            </div>
-            <button class="open-button">Abrir</button> <!-- Botón visible -->
-        </div>
-    </div>
-
+    <link rel="stylesheet" href="love letter.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".open-button").click(function () {
-                $(".card").removeClass("closed").addClass("open"); // Abrir la carta
-            });
-        });
-    </script>
-</body>
+    <title>Love letter</title>
+  </head>
+  <body>
+    <div class="container">  
+<div class="valentines">
+  <div class="envelope"></div>
+  <div class="front"></div>
+  <div class="card">
+  <div class="text">To my</br>Crush </br>I love You!</div>
+  <div class="heart"</div>
+  </div>
+  <div class="hearts">
+    <div class="one"></div>
+    <div class="two"></div>
+    <div class="three"></div>
+    <div class="four"></div>
+    <div class="five"></div>
+  </div>
+</div>
+</div>
+<div class="shadow"></div>
+</div>
+    <script src="love letter.js"></script>
+  </body>
 </html>
