@@ -1,26 +1,172 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carta</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta</title>
+    <style>
+        /* reset css */
+        * {
+            min-width: 0;
+            font: inherit;
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background-image: url('https://media.istockphoto.com/id/1732963074/es/foto/cielo-nocturno-estrellado-en-el-espacio.jpg?s=612x612&w=0&k=20&c=e4BowuietzqEMGIAoh23WfXeX49nLg_flLOTr1P7m1E=');
+            background-size: cover;
+            background-position: center;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container-letter {
+            position: relative;
+        }
+        .cover {
+            position: absolute;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-top: 100px solid #fe3334;
+            border-bottom: 100px solid transparent;
+            transition: transform .75s;
+            transform-origin: top;
+            z-index: 1;
+        }
+        .paper {
+            position: absolute;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: white;
+            width: 390px;
+            height: auto;
+            max-height: 600px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+            overflow-y: auto;
+            align-self: center;
+        }
+        .open-paper {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .options {
+            display: flex;
+            gap: 5rem;
+        }
+        .options button {
+            color: #ff3234;
+            font-weight: 600;
+            border-radius: 3px;
+            background: #fad7df;
+            padding: 0.5rem 1rem;
+            border: 1px solid #fe3334;
+            cursor: pointer;
+        }
+        .options button:hover {
+            background: #ff989e;
+            color: white;
+        }
+        .decorative-card {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #ffffff;
+            border: 2px solid #fe3334;
+            width: 400px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+            text-align: center;
+        }
+        .show {
+            display: block;
+        }
+        .audio-container {
+            display: none;
+        }
+        .highlight {
+            font-size: 1.5rem; /* Tamaño más grande */
+            font-weight: bold; /* Negrita */
+            color: #fe3334; /* Color personalizado */
+        }
+    </style>
 </head>
 <body>
-  <main>
-    <div class="container-letter">
-      <div class="cover"></div>
-      <span class="heart">♥</span>
-      <p class="paper" id="mainMessage">
-        En este día especial de amor y amistad, celebremos los lazos que nos unen. Que la alegría y el cariño nos acompañen siempre. ¡Feliz día!
-      </p>
-      <div class="letter"></div>
-    </div>
-    <div class="options">
-      <button id="open">Abrir</button>
-      <button id="close">Cerrar</butto>
-    </div>
-  </main>
-  <script src="script.js"></script>
+    <main>
+        <div class="container-letter">
+            <div class="cover"></div>
+            <span class="heart" style="font-size: 2rem; z-index: 2;">♥</span>
+            <p class="paper" id="mainMessage">
+                <!-- Aquí puedes agregar tu mensaje principal -->
+            </p>
+            <div class="letter"></div>
+            <div class="decorative-card" id="decorativeCard">
+                <h2 class="highlight">Querida Heyli ♥</h2>
+                <p>
+                    Solo quería tomarme un momento para decirte lo genial que es poder hablar contigo. Cada vez que recibo un mensaje tuyo, me saca una sonrisa.
+                </p>
+                <p>
+                    Eres una persona única, y aprecio cada conversación que tenemos. Me hace feliz saber que hay alguien con quien puedo compartir lo que pienso. 💖
+                </p>
+                <p>
+                    Recuerda lo mucho que te quiero, eres una chica que aprecio y amo mucho. 😊❤️ 
+                </p>
+                <p>¡Espero que te guste este pequeño detalle!</p>
+                <img src="https://www.dropbox.com/scl/fi/2oogz6nk8nnk5yjfibz7i/Gatito-Saludando-Gif.gif?rlkey=mt9qluaupgnl7sfp3juczuhm1&dl=1" alt="Gatito Saludando" style="width: 100%; max-width: 200px;">
+            </div>
+        </div>
+        <div class="audio-container">
+            <audio id="backgroundMusic">
+                <source src="https://www.dropbox.com/scl/fi/tuypx20ydt2jdgm14uq01/y-si-bailamos.mp3?rlkey=88xnfa5ot1ik7jzerm6yf4nec&dl=1" type="audio/mpeg">
+                Tu navegador no soporta el elemento de audio.
+            </audio>
+        </div>
+        <div class="options">
+            <button id="open">Abrir</button>
+            <button id="close">Cerrar</button>
+        </div>
+    </main>
+    <script>
+        document.getElementById('open').addEventListener('click', function() {
+            document.querySelector('.paper').classList.add('open-paper');
+            document.getElementById('decorativeCard').classList.add('show'); // Muestra la carta decorativa
+            
+            // Reproduce la música automáticamente
+            const audio = document.getElementById('backgroundMusic');
+            audio.play();
+        });
+
+        document.getElementById('close').addEventListener('click', function() {
+            document.querySelector('.paper').classList.remove('open-paper');
+            document.getElementById('decorativeCard').classList.remove('show'); // Oculta la carta decorativa
+            
+            // Detiene la música
+            const audio = document.getElementById('backgroundMusic');
+            audio.pause();
+            audio.currentTime = 0; // Reinicia la música al inicio
+        });
+    </script>
 </body>
 </html>
