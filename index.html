@@ -103,13 +103,10 @@
         .show {
             display: block;
         }
-        .audio-container {
-            display: none;
-        }
         .highlight {
-            font-size: 1.5rem; /* Tamaño más grande */
-            font-weight: bold; /* Negrita */
-            color: #fe3334; /* Color personalizado */
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fe3334;
         }
     </style>
 </head>
@@ -118,21 +115,13 @@
         <div class="container-letter">
             <div class="cover"></div>
             <span class="heart" style="font-size: 2rem; z-index: 2;">♥</span>
-            <p class="paper" id="mainMessage">
-                <!-- Aquí puedes agregar tu mensaje principal -->
-            </p>
+            <p class="paper" id="mainMessage"></p>
             <div class="letter"></div>
             <div class="decorative-card" id="decorativeCard">
                 <h2 class="highlight">Querida Heyli ♥</h2>
-                <p>
-                    Solo quería tomarme un momento para decirte lo genial que es poder hablar contigo. Cada vez que recibo un mensaje tuyo, me saca una sonrisa.
-                </p>
-                <p>
-                    Eres una persona única, y aprecio cada conversación que tenemos. Me hace feliz saber que hay alguien con quien puedo compartir lo que pienso. 💖
-                </p>
-                <p>
-                    Recuerda lo mucho que te quiero, eres una chica que aprecio y amo mucho. 😊❤️ 
-                </p>
+                <p>Solo quería tomarme un momento para decirte lo genial que es poder hablar contigo. Cada vez que recibo un mensaje tuyo, me saca una sonrisa.</p>
+                <p>Eres una persona única, y aprecio cada conversación que tenemos. Me hace feliz saber que hay alguien con quien puedo compartir lo que pienso. 💖</p>
+                <p>Recuerda lo mucho que te quiero, eres una chica que aprecio y amo mucho. 😊❤️</p>
                 <p>¡Espero que te guste este pequeño detalle!</p>
                 <img src="https://www.dropbox.com/scl/fi/2oogz6nk8nnk5yjfibz7i/Gatito-Saludando-Gif.gif?rlkey=mt9qluaupgnl7sfp3juczuhm1&dl=1" alt="Gatito Saludando" style="width: 100%; max-width: 200px;">
             </div>
@@ -151,21 +140,17 @@
     <script>
         document.getElementById('open').addEventListener('click', function() {
             document.querySelector('.paper').classList.add('open-paper');
-            document.getElementById('decorativeCard').classList.add('show'); // Muestra la carta decorativa
-            
-            // Reproduce la música automáticamente
+            document.getElementById('decorativeCard').classList.add('show');
             const audio = document.getElementById('backgroundMusic');
             audio.play();
         });
 
         document.getElementById('close').addEventListener('click', function() {
             document.querySelector('.paper').classList.remove('open-paper');
-            document.getElementById('decorativeCard').classList.remove('show'); // Oculta la carta decorativa
-            
-            // Detiene la música
+            document.getElementById('decorativeCard').classList.remove('show');
             const audio = document.getElementById('backgroundMusic');
             audio.pause();
-            audio.currentTime = 0; // Reinicia la música al inicio
+            audio.currentTime = 0;
         });
     </script>
 </body>
